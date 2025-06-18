@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./hooks/useAuth";
 import Layout from "./components/Layout";
 import Auth from "./pages/Auth";
+import Dashboard from "./pages/Dashboard";
 import Premissas from "./pages/Premissas";
 import AnaliseSwot from "./pages/AnaliseSwot";
 import PerspectiveFinanceira from "./pages/PerspectiveFinanceira";
@@ -25,7 +26,8 @@ const App = () => (
         <AuthProvider>
           <Routes>
             <Route path="/auth" element={<Auth />} />
-            <Route path="/" element={<Layout><Premissas /></Layout>} />
+            <Route path="/" element={<Layout><Dashboard /></Layout>} />
+            <Route path="/premissas" element={<Layout><Premissas /></Layout>} />
             <Route path="/swot" element={<Layout><AnaliseSwot /></Layout>} />
             <Route path="/estrategia" element={<Layout><PerspectiveFinanceira /></Layout>} />
             <Route path="/perspectiva-financeira" element={<Layout><PerspectiveFinanceira /></Layout>} />

@@ -4,7 +4,9 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./hooks/useAuth";
 import Layout from "./components/Layout";
+import Auth from "./pages/Auth";
 import Premissas from "./pages/Premissas";
 import AnaliseSwot from "./pages/AnaliseSwot";
 import PerspectiveFinanceira from "./pages/PerspectiveFinanceira";
@@ -20,23 +22,24 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Layout>
+        <AuthProvider>
           <Routes>
-            <Route path="/" element={<Premissas />} />
-            <Route path="/swot" element={<AnaliseSwot />} />
-            <Route path="/estrategia" element={<PerspectiveFinanceira />} />
-            <Route path="/perspectiva-financeira" element={<PerspectiveFinanceira />} />
-            <Route path="/graficos" element={<Graficos />} />
-            <Route path="/resultados" element={<Resultados />} />
+            <Route path="/auth" element={<Auth />} />
+            <Route path="/" element={<Layout><Premissas /></Layout>} />
+            <Route path="/swot" element={<Layout><AnaliseSwot /></Layout>} />
+            <Route path="/estrategia" element={<Layout><PerspectiveFinanceira /></Layout>} />
+            <Route path="/perspectiva-financeira" element={<Layout><PerspectiveFinanceira /></Layout>} />
+            <Route path="/graficos" element={<Layout><Graficos /></Layout>} />
+            <Route path="/resultados" element={<Layout><Resultados /></Layout>} />
             {/* Placeholder routes for remaining pages */}
-            <Route path="/plano-acao" element={<div className="text-center text-2xl text-sebrae-navy">Plano de Ação - Em desenvolvimento</div>} />
-            <Route path="/mapa-estrategico" element={<div className="text-center text-2xl text-sebrae-navy">Mapa Estratégico - Em desenvolvimento</div>} />
-            <Route path="/perspectiva-clientes" element={<div className="text-center text-2xl text-sebrae-navy">Perspectiva de Clientes - Em desenvolvimento</div>} />
-            <Route path="/perspectiva-processos" element={<div className="text-center text-2xl text-sebrae-navy">Perspectiva de Processos Internos - Em desenvolvimento</div>} />
-            <Route path="/perspectiva-aprendizagem" element={<div className="text-center text-2xl text-sebrae-navy">Perspectiva de Aprendizagem - Em desenvolvimento</div>} />
+            <Route path="/plano-acao" element={<Layout><div className="text-center text-2xl text-sebrae-navy">Plano de Ação - Em desenvolvimento</div></Layout>} />
+            <Route path="/mapa-estrategico" element={<Layout><div className="text-center text-2xl text-sebrae-navy">Mapa Estratégico - Em desenvolvimento</div></Layout>} />
+            <Route path="/perspectiva-clientes" element={<Layout><div className="text-center text-2xl text-sebrae-navy">Perspectiva de Clientes - Em desenvolvimento</div></Layout>} />
+            <Route path="/perspectiva-processos" element={<Layout><div className="text-center text-2xl text-sebrae-navy">Perspectiva de Processos Internos - Em desenvolvimento</div></Layout>} />
+            <Route path="/perspectiva-aprendizagem" element={<Layout><div className="text-center text-2xl text-sebrae-navy">Perspectiva de Aprendizagem - Em desenvolvimento</div></Layout>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </Layout>
+        </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
